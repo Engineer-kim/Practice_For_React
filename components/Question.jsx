@@ -1,6 +1,6 @@
 import QuestionTimer from "./QuestionTimer"
 import Answer from "./Answer"
-import { useState } from "react"
+import { useState ,useEffect } from "react"
 import QUESTIONS from '../questions'
 
 export default function Question({ index, onSelectAnswer,
@@ -20,6 +20,17 @@ export default function Question({ index, onSelectAnswer,
     if (answer.isCorrect !== null) {
         timer = 2000
     }
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            if (answer.selecteAnswer === '') {
+                onSkipAnswer();
+            }
+        }, timer);
+
+        return () => clearTimeout(timeoutId);
+    }, [answer.selecteAnswer, onSkipAnswer, timer]);
+
 
 
     function handleSelectAnswer(answer) {
