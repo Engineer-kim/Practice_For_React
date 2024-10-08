@@ -20,7 +20,8 @@ function App() {
       <Header />
       <main>
         <ConfingureCounter handleSetCount={handleSetCount}/>
-        <Counter initialCount={chosenCount} />
+        <Counter key={chosenCount
+        } initialCount={chosenCount} />
       </main>
     </>
   );
